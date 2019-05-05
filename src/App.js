@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
-function App() {
+import reducers from './reducers'
+import { Provider } from 'react-redux';
+import Routes from './routes/Routes';
+
+require('dotenv').config();
+
+// store with middleware and redux devtools extension enabled
+const store = createStore(
+  reducers,
+  composeWithDevTools(
+    applyMiddleware(thunk)
+  )
+);
+
+// Testing...
+console.log(store);
+console.log(store.getState());
+
+// connect the app to the store and render it
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Routes />
+    </Provider>
   );
-}
+};
 
 export default App;
+
+// import * as serviceWorker from './serviceWorker';
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+// serviceWorker.unregister();

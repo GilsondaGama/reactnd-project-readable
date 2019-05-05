@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.App-logoReact {
+  border-radius: 50%;
+  background: #000000;  
+  height: 8vmin;
+  width: 8vmin;
+  pointer-events: none;
+  margin-right: -1vmin;
+}
+
+.App-logoRedux {
+  border-radius: 50%;
+  background: #000000;  
+  height: 8vmin;
+  width: 8vmin;
+  pointer-events: none;
+  padding: 1vmin;
+  margin-right: 3vmin;
+}
+
+
+.App-logos {
+  height: 5vmin;
+  margin-right: 1vmin;
+}
