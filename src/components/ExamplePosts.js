@@ -4,7 +4,7 @@ class routePosts extends Component {
   render() {
     return (
       <div>
-          Posts
+          Example Posts
       </div>
     );
   }

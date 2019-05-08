@@ -22,12 +22,12 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: '0 8px',
-    backgroundColor: blueGrey[900],    
+    backgroundColor: blueGrey[colorBack],    
     color: blueGrey[50],
     ...theme.mixins.toolbar,
   },
   appBar: {
-    backgroundColor: blueGrey[800],  
+    backgroundColor: blueGrey[900],  
     marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -55,7 +55,7 @@ const styles = theme => ({
   menuItem: {
     backgroundColor: blueGrey[colorBack],  
     '&:focus': {
-      backgroundColor: blueGrey[500],
+      backgroundColor: blueGrey[600],
       '& $primary, & $icon': {
         color: theme.palette.common.primary,
       },

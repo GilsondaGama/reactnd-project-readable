@@ -7,6 +7,9 @@ import {
 import Categories from '../components/Categories'
 
 function mapStateToProps(state) {
+  
+  console.log(state)
+
   return {
     categories: state.categories
   }

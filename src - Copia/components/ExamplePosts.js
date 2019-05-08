@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-class routeCreateEditPost extends Component {
+class routePosts extends Component {
   render() {
     return (
       <div>
-          Create - Edit
+          Example Posts
       </div>
     );
   }
 }
 
-export default routeCreateEditPost;
+export default routePosts
