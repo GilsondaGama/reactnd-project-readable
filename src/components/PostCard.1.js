@@ -42,11 +42,11 @@ class PostCard extends Component {
 
   renderIcon = (icon) => {
     switch (icon) {
-      case 'react':
+      case 'React':
         return <IconReact />
-      case 'redux':
+      case 'Redux':
         return <IconRedux />
-      case 'udacity':
+      case 'Udacity':
         return <IconUdacity />
       default:
         return <IconHome />       
@@ -59,7 +59,8 @@ class PostCard extends Component {
   }  
 
   render() {
-    const { classes, post, onDeletePost, commentCount, voteForPost } = this.props;    
+    const { classes, post, onDeletePost, commentCount, voteForPost,
+    match: { params: { id } } } = this.props;    
 
     console.log(this.props)
 
@@ -67,37 +68,36 @@ class PostCard extends Component {
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar className={classes.avatar}>              
-              {this.renderIcon(post.category)}
+            <Avatar aria-label="Recipe" className={classes.avatar}>              
+              <IconReact />
             </Avatar>
           }
           title={
             <Typography component="h5" variant="h5">
-              {post.title}
+              Shrimp and Chorizo Paella
             </Typography>
           }
-          subheader={`Posted by ${post.author} - ${timestampToDate(post.timestamp)}`}
+          subheader="Posted by David Olaf - September 14, 2016"
         />
 
-        { post.body.length > 0 &&(
-          <CardContent>
-            <Typography component="p">
-              <b>{`( ${capitalize(post.category)} )`}</b> {post.body}
-            </Typography>
-          </CardContent>
-        )}
+        <CardContent>
+          <Typography component="p">
+            This impressive paella is a perfect party dish and a fun meal to cook together with your
+            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          </Typography>
+        </CardContent>
 
         <CardActions className={classes.actions} disableActionSpacing>
-          <Badge badgeContent={post.voteScore} color="primary" >
+          <Badge badgeContent={4} color="primary">
             <GradeIcon />
           </Badge>              
           <Chip
-            avatar={            
-              <Avatar >
+            avatar={
+              <Avatar>
                 <IconThumbUpAlt />
               </Avatar>
             }
-            label="Up Vote" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'upVote')}         
+            label="Like Post" clickable className={classes.chip} color="primary" onClick={handleClick}         
           />
           <Chip
             avatar={
@@ -105,7 +105,7 @@ class PostCard extends Component {
                 <IconThumbDownAlt />
               </Avatar>
             }
-            label="Down Vote" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'downVote')}         
+            label="Dislike Post" clickable className={classes.chip} color="primary" onClick={handleClick}         
           />
 
           <IconButton ></IconButton>         

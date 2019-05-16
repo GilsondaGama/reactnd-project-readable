@@ -84,12 +84,12 @@ class Categories extends Component {
           </MenuItem>              
 
           {_.map(categories, category => {
-          return <MenuItem 
-            component={Link} 
-            className={classes.menuItem}
-            to={`/${category.path}`} 
-            key={category.path}                             
-          >             
+            return <MenuItem 
+              component={Link} 
+              className={classes.menuItem}
+              to={`/${category.path}`} 
+              key={category.path}                             
+            >             
             <ListItemIcon className={classes.icon}>
               {this.renderIcon(category.name)}
             </ListItemIcon>

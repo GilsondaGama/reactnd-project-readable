@@ -35,7 +35,7 @@ class PostsList extends Component {
                 key={post.id}
                 post={post}
                 onDeletePost={deletePost}
-            />
+              />
             </Grid>
             
           )
