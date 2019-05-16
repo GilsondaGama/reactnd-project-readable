@@ -4,8 +4,8 @@ import {
     fetchCommentsCount,
 } from '../actions';
 
-
-import Post from '../components/Post'
+import Post from '../components/PostCard'
+//import Post from '../components/Post'
 
 function mapStateToProps (state, ownProps) {
   return {}

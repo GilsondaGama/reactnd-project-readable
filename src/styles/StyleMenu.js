@@ -1,4 +1,5 @@
 import { blueGrey } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 
 const drawerWidth = 240;
 const colorBack = 800;
@@ -7,10 +8,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
-  palette: {
-    primary: blueGrey[50],
-    secondary: blueGrey[600],
-  }, 
+
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
@@ -22,27 +20,31 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: '0 8px',
-    backgroundColor: blueGrey[colorBack],    
-    color: blueGrey[50],
+    color: blueGrey[700],
+    backgroundColor: blueGrey[900],    
     ...theme.mixins.toolbar,
   },
   appBar: {
-    backgroundColor: blueGrey[900],  
+    backgroundColor: blueGrey[colorBack],   
     marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
   },
+  ListText: {
+    color: theme.palette.common.white,
+  },
   menuButton: {
-    marginRight: 20,
+    marginRight: 10,
+    color: theme.palette.common.white,
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth,      
     backgroundColor: blueGrey[colorBack],  
+    width: drawerWidth,      
   },
   content: {
     flexGrow: 1,
@@ -53,11 +55,18 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 4,
   },
   menuItem: {
-    backgroundColor: blueGrey[colorBack],  
+    color: theme.palette.common.white,
+    backgroundColor: blueGrey[colorBack], 
+    '& $icon': {
+      color: theme.palette.common.white,
+      backgroundColor: blueGrey[800],
+  },
     '&:focus': {
-      backgroundColor: blueGrey[600],
+      color: blue[600],     
+      backgroundColor: blueGrey[700],
       '& $primary, & $icon': {
-        color: theme.palette.common.primary,
+        color: blue[600],
+        backgroundColor: blueGrey[700],
       },
     },
   },

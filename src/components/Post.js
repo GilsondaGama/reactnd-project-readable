@@ -17,8 +17,8 @@ import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BorderColor from '@material-ui/icons/BorderColor';
 
-import { timestampToDate } from '../helpers/timestampToDate';
-import { capitalize } from '../helpers/capitalize';
+import { timestampToDate } from '../utilities/timestampToDate';
+import { capitalize } from '../utilities/capitalize';
 
 class Post extends React.Component {
 

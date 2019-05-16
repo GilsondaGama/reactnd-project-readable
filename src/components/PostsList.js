@@ -8,9 +8,8 @@ import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import _ from 'lodash';
 
-import PostContainer from '../container/ContainerPost';
-import CustomizedSnackbars from '../shared/CustomizedSnackbars';
-import RecipeReviewCard from '../helpers/RecipeReviewCard'
+import ContainerPost from '../container/ContainerPost';
+import CustomizedSnackbars from '../styles/CustomizedSnackbars';
 
 class PostsList extends Component {
   componentWillMount() {
@@ -31,16 +30,14 @@ class PostsList extends Component {
         const orderedPosts = _.sortBy(posts, this.props.postsOrder).reverse();
         return (
           _.map(orderedPosts, post => 
-            <RecipeReviewCard />
-            /*
             <Grid key={post.id} item xs={12}>
-              <PostContainer
+              <ContainerPost
                 key={post.id}
                 post={post}
                 onDeletePost={deletePost}
-              />
+            />
             </Grid>
-            */
+            
           )
         );
       }
@@ -61,6 +58,7 @@ class PostsList extends Component {
       return(
         <div className={classes.root}>
         <Grid container spacing={24}>
+   {     /*
           <Grid item xs={12}>
             <Paper className={classes.paper}>
                 <Select
@@ -76,6 +74,7 @@ class PostsList extends Component {
               </Select>
             </Paper>
           </Grid>
+*/}
 
         </Grid>
           {this.renderPosts()}
