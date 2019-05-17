@@ -16,7 +16,7 @@ import Badge from '@material-ui/core/Badge';
 
 import IconHome from '@material-ui/icons/Home';
 import GradeIcon from '@material-ui/icons/Grade';
-import SpeakerNotes from '@material-ui/icons/SpeakerNotes';
+import Comment from '@material-ui/icons/Comment';
 import IconDelete from '@material-ui/icons/Delete';
 import IconBorderColor from '@material-ui/icons/BorderColor';
 import IconThumbUpAlt from '@material-ui/icons/ThumbUpAlt';
@@ -97,7 +97,7 @@ class PostCard extends Component {
                 <IconThumbUpAlt />
               </Avatar>
             }
-            label="Up Vote" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'upVote')}         
+            label="Like" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'upVote')}         
           />
           <Chip
             avatar={
@@ -105,19 +105,26 @@ class PostCard extends Component {
                 <IconThumbDownAlt />
               </Avatar>
             }
-            label="Down Vote" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'downVote')}         
+            label="Dislike" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'downVote')}         
           />
+                       
+          <IconButton disabled />
 
-          <IconButton ></IconButton>         
-
-          <IconButton aria-label="4 pending messages" className={classes.margin}>
-            <Badge badgeContent={10} color="primary">
-              <SpeakerNotes />
+          <IconButton 
+            aria-label="Comment Count" 
+            className={classes.margin}
+            component={Link} to={`/${post.category}/${post.id}`}
+          >
+            <Badge 
+              badgeContent={commentCount ? commentCount : this.state._commentCount} 
+              color="primary"
+              className={classes.chipMargin}
+            >
+              <Comment />
             </Badge>
           </IconButton>    
 
-          <IconButton ></IconButton>         
-          <IconButton ></IconButton>         
+          <IconButton disabled />        
 
           <Chip
             avatar={

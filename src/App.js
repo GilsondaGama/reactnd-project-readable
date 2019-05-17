@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 
 import reducers from './reducers'
 import { Provider } from 'react-redux';
-import Routes from './routes/Routes';
+import Routes from './components/Routes';
 
 require('dotenv').config();
 
@@ -16,9 +16,6 @@ const store = createStore(
     applyMiddleware(thunk)
   )
 );
-
-// Testing...
-//console.log(store.getState());
 
 // connect the app to the store and render it
 const App = () => {

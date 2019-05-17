@@ -8,11 +8,9 @@ const styles = theme => ({
   },
   chip: {
     margin: theme.spacing.unit,
-    marginright: 10,
   },
   badge: {
     top: '50%',
-    marginright: 10,
     padding: 25,
   },
   card: {
