@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.App-logos {
+  height: 7vmin;
+  width: 7vmin;
+  pointer-events: none;
+  margin-right: 1vmin;
+}

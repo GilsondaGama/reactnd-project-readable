@@ -41,7 +41,7 @@ class PostCard extends Component {
   state = { _commentCount: 0 }
 
   renderIcon = (icon) => {
-    switch (icon.toLowerCase()) {
+    switch (icon) {
       case 'react':
         return <IconReact />
       case 'redux':

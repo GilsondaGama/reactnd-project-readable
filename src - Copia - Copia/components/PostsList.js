@@ -85,7 +85,7 @@ class PostsList extends Component {
 
 const styles = theme => ({
     root: {
-      marginTop: 25,
+      marginTop: 50,
       flexGrow: 1,
     },
     paper: {

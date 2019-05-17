@@ -23,6 +23,7 @@ import logoReact from '../assets/LogoReactMenu.svg'
 import logoRedux from '../assets/logoRedux.svg'
 import '../styles/Layout.css'
 import styles from '../styles/StyleMenu'
+import NewPost from './NewPost';
 
 class Categories extends Component {
   componentWillMount() {
@@ -65,7 +66,7 @@ class Categories extends Component {
         <div className={classes.drawerHeader}>
           <img src={logoReact} className="App-logos" alt="React" />
           <img src={logoRedux} className="App-logos" alt="Redux" />
-          <Typography variant="h6" align="left" color="primary" noWrap >
+          <Typography variant="h6" align="left" color="inherit" noWrap >
             Readable
           </Typography>
         </div>
