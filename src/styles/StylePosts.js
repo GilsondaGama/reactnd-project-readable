@@ -16,6 +16,10 @@ const styles = theme => ({
   card: {
     marginBottom: 15,  
   },
+  margin: {
+    marginLeft: 15,  
+    marginRight: 15,  
+  },
   CardContent: {
     backgroundColor: blue[800],
   },

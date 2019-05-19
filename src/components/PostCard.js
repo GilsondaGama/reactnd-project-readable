@@ -8,7 +8,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import IconButton from '@material-ui/core/IconButton';
@@ -25,13 +24,9 @@ import IconRedux from '@material-ui/icons/OpenWith';
 import IconUdacity from '@material-ui/icons/School';
 import IconReact from '@material-ui/icons/ImportantDevices';
 
-import styles from '../styles/StylePosts'
 import { timestampToDate } from '../utilities/timestampToDate';
 import { capitalize } from '../utilities/capitalize';
-
-function handleDelete() {
-  alert('You clicked the delete icon.'); // eslint-disable-line no-alert
-}
+import styles from '../styles/StylePosts'
 
 function handleClick() {
   alert('You clicked the Chip.'); // eslint-disable-line no-alert
@@ -59,9 +54,8 @@ class PostCard extends Component {
   }  
 
   render() {
-    const { classes, post, onDeletePost, commentCount, voteForPost } = this.props;    
-
-    console.log(this.props)
+    const { classes, post, onDeletePost, commentCount, voteForPost,
+    match: { params: { id } } } = this.props;
 
     return (
       <Card className={classes.card}>
@@ -97,7 +91,11 @@ class PostCard extends Component {
                 <IconThumbUpAlt />
               </Avatar>
             }
-            label="Like" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'upVote')}         
+            label="Like" 
+            clickable 
+            className={classes.chip} 
+            color="primary" 
+            onClick={() => voteForPost(post.id, 'upVote')}         
           />
           <Chip
             avatar={
@@ -105,10 +103,12 @@ class PostCard extends Component {
                 <IconThumbDownAlt />
               </Avatar>
             }
-            label="Dislike" clickable className={classes.chip} color="primary" onClick={() => voteForPost(post.id, 'downVote')}         
+            label="Dislike" 
+            clickable 
+            className={classes.chip} 
+            color="primary" 
+            onClick={() => voteForPost(post.id, 'downVote')}         
           />
-                       
-          <IconButton disabled size="small"/>
 
           <IconButton 
             aria-label="Comment Count" 
@@ -124,15 +124,17 @@ class PostCard extends Component {
             </Badge>
           </IconButton>    
 
-          <IconButton disabled size="small" />        
-
           <Chip
             avatar={
               <Avatar>
                 <IconBorderColor />
               </Avatar>
             }
-            label="Edit" clickable className={classes.chip} color="primary" onClick={handleClick}         
+            label="Edit" 
+            clickable 
+            className={classes.chip} 
+            color="primary" 
+            onClick={handleClick}         
           />
           <Chip
             avatar={
@@ -140,7 +142,12 @@ class PostCard extends Component {
                 <IconDelete />
               </Avatar>
             }
-            label="Delete" clickable className={classes.chip} color="secondary" onClick={handleDelete}         
+            label="Delete" 
+            clickable 
+            className={classes.chip} 
+            color="secondary" 
+            onClick={() =>
+              onDeletePost(post.id, () => { this.props.history.push('/') } )}     
           />
 
         </CardActions>
@@ -154,4 +161,5 @@ PostCard.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(PostCard);
+export default withRouter(withStyles(styles)(PostCard));
+//export default withStyles(styles)(PostCard);

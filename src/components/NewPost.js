@@ -1,21 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator, SelectValidator  } from 'react-material-ui-form-validator';
 import { connect } from 'react-redux';
 import { createPost, fetchCategories } from '../actions';
 import { Link } from 'react-router-dom'
 
-import classNames from 'classnames';
 import Divider from '@material-ui/core/Divider';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import styles from '../styles/StyleNewPosts'
@@ -27,11 +21,11 @@ class NewPost extends React.Component {
     super(props);
     this.state = {
       formData: {
-        title: '',
-        body: '',
-        author: '',
-        category: '',
-      },
+      title: '',
+      body: '',
+      author: '',
+      category: '',
+    },
       submitted: false,
       open: true,
     };
@@ -72,7 +66,7 @@ class NewPost extends React.Component {
 
     if (categories.length > 0) {
       return  categories.map(category => (
-        <option key={category.name} value={category.name}>
+        <option key={category.name} value={category.path}>
         {category.name}
         </option>
       ));
@@ -103,12 +97,13 @@ class NewPost extends React.Component {
                 onChange={this.handleChange}
                 label="Select a Category"
                 name="category"
+                margin="dense"
+                variant="outlined"
                 value={formData.category}
                 SelectProps={{
                   native: true
                 }}
-                validators={['required']}
-                errorMessages={['The category is required']}
+                required
               >
                 <option value=""></option>
                 { this.getOptions() }
@@ -119,19 +114,26 @@ class NewPost extends React.Component {
                 onChange={this.handleChange}
                 label="Title"
                 name="title"
+                margin="dense"
+                variant="outlined"
                 value={formData.title}
-                validators={['required']}
-                errorMessages={['The title is required']}
+                required
+                autoComplete="off"
               />
               <br />
               <TextValidator
                 className={classes.textValidator}
                 onChange={this.handleChange}
+                margin="dense"
+                variant="outlined"                
                 label="body"
                 name="body"
+                multiline
+                rows="3"
+                required
                 value={formData.body}
-                validators={['required']}
-                errorMessages={['The body is required']}
+                value={this.state.multiline}  
+                autoComplete="off"                              
               />
               <br />
               <TextValidator
@@ -139,9 +141,11 @@ class NewPost extends React.Component {
                 onChange={this.handleChange}
                 label="Author"
                 name="author"
+                margin="dense"
+                variant="outlined"
                 value={formData.author}
-                validators={['required']}
-                errorMessages={['The author is required']}
+                required
+                autoComplete="off"                
               />
               <br />
               <div className={classes.buttonContainer}>
@@ -164,7 +168,7 @@ class NewPost extends React.Component {
                     className={classes.button}
                     raised="true"
                     variant="contained"
-                    color="secondary"
+                    color="inherit"
                     disabled={submitted}
                 >
                   Cancel

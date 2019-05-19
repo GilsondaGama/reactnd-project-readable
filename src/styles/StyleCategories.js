@@ -8,7 +8,6 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
-
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
@@ -17,12 +16,12 @@ const styles = theme => ({
     backgroundColor: blueGrey[colorBack],   
   },
   drawerHeader: {
+    paddingTop: 5,
+    paddingBottom: 4,
     display: 'flex',
     alignItems: 'center',
     padding: '0 20px',
-    color: blueGrey[700],
-    backgroundColor: blueGrey[900],    
-    ...theme.mixins.toolbar,
+     backgroundColor: blueGrey[900],    
   },
   appBar: {
     backgroundColor: blueGrey[colorBack],   
@@ -36,7 +35,6 @@ const styles = theme => ({
   },
   menuButton: {
     marginRight: 10,
-    color: theme.palette.common.white,
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -47,6 +45,7 @@ const styles = theme => ({
     width: drawerWidth,      
   },
   content: {
+    marginTop: -30,
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
     backgroundColor: blueGrey[600],    

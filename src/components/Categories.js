@@ -14,6 +14,7 @@ import IconHome from '@material-ui/icons/Home';
 import IconPlaylistAdd from '@material-ui/icons/PlaylistAdd';
 import IconPlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
 import IconDateRange from '@material-ui/icons/DateRange';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import IconLineStyle from '@material-ui/icons/LineStyle';
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -22,7 +23,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import logoReact from '../assets/LogoReactMenu.svg'
 import logoRedux from '../assets/logoRedux.svg'
 import '../styles/Layout.css'
-import styles from '../styles/StyleMenu'
+import styles from '../styles/StyleCategories'
 
 class Categories extends Component {
   componentWillMount() {
@@ -43,12 +44,12 @@ class Categories extends Component {
   };
 
   renderIcon = (icon) => {
-    switch (icon.toLowerCase()) {
-      case 'react':
+    switch (icon) {
+      case 'React':
         return <IconReact />
-      case 'redux':
+      case 'Redux':
         return <IconRedux />
-      case 'udacity':
+      case 'Udacity':
         return <IconUdacity />
       default:
         return <IconHome />       
@@ -148,19 +149,22 @@ class Categories extends Component {
       <div className={classes.root}>      
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
+          <Toolbar variant="dense">
             <IconButton
               color="inherit"
-              aria-label="Open drawer"
+              aria-label="Open drawer"            
               onClick={this.handleDrawerToggle}
               className={classes.menuButton}
             >
+              <MenuIcon />
               <Menu />
-            </IconButton>
+            </IconButton>               
 
-            <Typography variant="h6" align="center" color="inherit" noWrap >
+            <Typography variant = "subtitle1" color = "inherit" noWrap >
               Project for React Nanodegree program
             </Typography>
+
+
           </Toolbar>
         </AppBar>
 
