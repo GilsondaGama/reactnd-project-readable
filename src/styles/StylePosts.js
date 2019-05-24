@@ -11,14 +11,13 @@ const styles = theme => ({
   },
   badge: {
     top: '50%',
-    padding: 15,
+    padding: 15, 
   },
   card: {
-    marginBottom: 15,  
+    marginTop: 15,  
   },
   margin: {
-    marginLeft: 15,  
-    marginRight: 15,  
+    backgroundColor: blue[500],       
   },
   CardContent: {
     backgroundColor: blue[800],

@@ -8,11 +8,10 @@ import { createPost, fetchCategories } from '../actions';
 import { Link } from 'react-router-dom'
 
 import Divider from '@material-ui/core/Divider';
-import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import styles from '../styles/StyleNewPosts'
+import styles from '../styles/StyleNewPost'
 
 const GoToMain = props => <Link to="/" {...props} />
 
@@ -49,16 +48,13 @@ class NewPost extends React.Component {
       this.props.createPost(this.state.formData, () => {
         this.props.history.push('/');
       });
-      // setTimeout(() => this.setState({ submitted: false }), 5000);
     });
   }
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
+  handleToggle = () => {
+    this.setState({ 
+      open: !this.state.open 
+    });
   };
 
   getOptions = () => {
@@ -78,11 +74,7 @@ class NewPost extends React.Component {
     const { formData, submitted } = this.state;
     return (
       <div>
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="form-dialog-title"
-        >
+
           <DialogTitle id="form-dialog-title">Creating a New Post</DialogTitle>
           <Divider />      
 
@@ -118,6 +110,7 @@ class NewPost extends React.Component {
                 variant="outlined"
                 value={formData.title}
                 required
+                fullWidth
                 autoComplete="off"
               />
               <br />
@@ -131,8 +124,8 @@ class NewPost extends React.Component {
                 multiline
                 rows="3"
                 required
+                fullWidth         
                 value={formData.body}
-                value={this.state.multiline}  
                 autoComplete="off"                              
               />
               <br />
@@ -145,6 +138,7 @@ class NewPost extends React.Component {
                 variant="outlined"
                 value={formData.author}
                 required
+                fullWidth                
                 autoComplete="off"                
               />
               <br />
@@ -158,7 +152,7 @@ class NewPost extends React.Component {
                   disabled={submitted}
                 >
                   {
-                    (submitted && 'Your form is submitted!')
+                    (submitted && 'Submitted!')
                     || (!submitted && 'Submit')
                   }
                 </Button>
@@ -176,7 +170,7 @@ class NewPost extends React.Component {
               </div>
             </ValidatorForm>
           </DialogContent>
-        </Dialog>
+
       </div>
     )
   }

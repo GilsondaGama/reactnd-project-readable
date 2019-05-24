@@ -3,22 +3,17 @@ import { Link, withRouter } from 'react-router-dom'
 import { compose } from 'recompose'       
 import _ from 'lodash';
 
-import {  AppBar, Toolbar, IconButton, Typography, Hidden, List,
-          Drawer, MenuList, MenuItem, withStyles, ListItemText, 
-          ListItem, ListItemIcon, Collapse, Divider, Menu, CssBaseline } from '@material-ui/core'    
+import {  AppBar, Toolbar, IconButton, Typography, Hidden,
+          Drawer, MenuList, MenuItem, withStyles,  
+          ListItemIcon, Divider, Menu, CssBaseline } from '@material-ui/core'    
 
 import IconRedux from '@material-ui/icons/OpenWith';
 import IconUdacity from '@material-ui/icons/School';
 import IconReact from '@material-ui/icons/ImportantDevices';
 import IconHome from '@material-ui/icons/Home';
 import IconPlaylistAdd from '@material-ui/icons/PlaylistAdd';
-import IconPlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
-import IconDateRange from '@material-ui/icons/DateRange';
-import MenuIcon from '@material-ui/icons/Menu';
 
-import IconLineStyle from '@material-ui/icons/LineStyle';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import logoReact from '../assets/LogoReactMenu.svg'
 import logoRedux from '../assets/logoRedux.svg'
@@ -64,8 +59,8 @@ class Categories extends Component {
     const drawer = ( 
       <div>       
         <div className={classes.drawerHeader}>
-          <img src={logoReact} className="App-logos" alt="React" />
-          <img src={logoRedux} className="App-logos" alt="Redux" />
+          <img src={logoReact} className="App-React" alt="React" />
+          <img src={logoRedux} className="App-Redux" alt="Redux" />
           <Typography variant="h6" align="left" color="primary" noWrap >
             Readable
           </Typography>
@@ -114,33 +109,6 @@ class Categories extends Component {
               New Post
             </Typography> 
           </MenuItem> 
-
-          <MenuItem className={classes.menuItem} button onClick={this.handleClick}>
-            <ListItemIcon className={classes.icon} >
-              <IconLineStyle />
-            </ListItemIcon>   
-            <Typography variant="Headline">              
-              Order By 
-            </Typography>         
-            {this.state.open ? <ExpandLess /> : <ExpandMore />}
-          </MenuItem> 
-
-          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon >
-                  <IconPlaylistAddCheck />
-                </ListItemIcon>
-                <ListItemText inset primary="Votes" />
-              </ListItem>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <IconDateRange />
-                </ListItemIcon>
-                <ListItemText inset primary="Date" />
-              </ListItem>                
-            </List>
-          </Collapse>  
        </MenuList> 
       </div>
     )

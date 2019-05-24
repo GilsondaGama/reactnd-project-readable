@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import ExamplePosts from './ExamplePosts'
 import Layout from '../container/ContainerCategories'
 import ContainerPostsList from '../container/ContainerPostsList'
+import ContainerPostEdit from '../container/ContainerPostEdit'
 import NewPost from './NewPost'
 
 class Routes extends Component {
@@ -14,7 +15,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/" exact component={ ContainerPostsList } />
             <Route path="/post/new" component={ NewPost } />            
-            <Route path="/:category/edit/:id" children={props => <ExamplePosts {...props} />} />
+            <Route path="/:category/edit/:id" children={props => <ContainerPostEdit {...props} />} />
             <Route path="/:category" exact component={props => <ContainerPostsList {...props} />} />
             <Route path="/:category/:id" exact component={props => <ExamplePosts {...props} />} />
           </Switch>

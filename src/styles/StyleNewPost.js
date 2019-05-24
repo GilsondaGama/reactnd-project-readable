@@ -1,27 +1,20 @@
 import { blueGrey } from '@material-ui/core/colors';
 
 const styles = theme => ({
-  root: {
-    marginTop: 75,
-    flexGrow: 1,
-  },
+
   margin: {
     margin: theme.spacing.unit,
-  },
-  paper: {
-    padding: theme.spacing.unit,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    backgroundColor: blueGrey[600],   
+    backgroundColor: blueGrey[0]
   },
   heading: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    color: theme.palette.common.white,    
   },
-  textValidator: {
-    width: 400
+  node: {
+    color: theme.palette.common.white,
   },
   selectValidator: {
-    width: 400,
+    width: 200,
     marginTop: 20
   },
   buttonContainer: {
@@ -34,6 +27,10 @@ const styles = theme => ({
     width: 100,
     margin: 5
   },
+  chipBar: {
+    marginLeft: 7,
+    marginRight: 7,
+  },  
 });
 
 export default styles;

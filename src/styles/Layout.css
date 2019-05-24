@@ -2,9 +2,18 @@
   text-align: center;
 }
 
-.App-logos {
-  height: 7vmin;
-  width: 7vmin;
-  pointer-events: none;
-  margin-right: 1vmin;
+.App-React {
+  width: 5vmin;
+}
+.App-Redux {
+  width: 5.5vmin;
+  margin-right: 2vmin;
+}
+
+a:link {
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
 }

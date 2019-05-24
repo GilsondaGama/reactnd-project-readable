@@ -1,7 +1,7 @@
 import { blueGrey } from '@material-ui/core/colors';
 import { blue } from '@material-ui/core/colors';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 const colorBack = 800;
 
 const styles = theme => ({
@@ -13,18 +13,19 @@ const styles = theme => ({
       width: drawerWidth,
       flexShrink: 0,
     },
-    backgroundColor: blueGrey[colorBack],   
+ 
   },
   drawerHeader: {
-    paddingTop: 5,
-    paddingBottom: 4,
+    paddingTop: 8,
+    paddingBottom: 8,
     display: 'flex',
     alignItems: 'center',
-    padding: '0 20px',
-     backgroundColor: blueGrey[900],    
+    padding: '0 10px',
+    backgroundColor: blueGrey[900],    
   },
   appBar: {
-    backgroundColor: blueGrey[colorBack],   
+    backgroundColor: blueGrey[colorBack],  
+    color: blueGrey[100],  
     marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,

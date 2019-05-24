@@ -28,10 +28,6 @@ import { timestampToDate } from '../utilities/timestampToDate';
 import { capitalize } from '../utilities/capitalize';
 import styles from '../styles/StylePosts'
 
-function handleClick() {
-  alert('You clicked the Chip.'); // eslint-disable-line no-alert
-}
-
 class PostCard extends Component {
   state = { _commentCount: 0 }
 
@@ -133,8 +129,8 @@ class PostCard extends Component {
             label="Edit" 
             clickable 
             className={classes.chip} 
-            color="primary" 
-            onClick={handleClick}         
+            color="primary"    
+            component={Link} to={`/${post.category}/edit/${post.id}`}            
           />
           <Chip
             avatar={
