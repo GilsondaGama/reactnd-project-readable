@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator, SelectValidator  } from 'react-material-ui-form-validator';
 import { connect } from 'react-redux';
 import { createPost, fetchCategories } from '../actions';
 import { Link } from 'react-router-dom'
+
+import Divider from '@material-ui/core/Divider';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+import styles from '../styles/StyleNewPost'
 
 const GoToMain = props => <Link to="/" {...props} />
 
@@ -16,12 +20,13 @@ class NewPost extends React.Component {
     super(props);
     this.state = {
       formData: {
-        title: '',
-        body: '',
-        author: '',
-        category: '',
-      },
+      title: '',
+      body: '',
+      author: '',
+      category: '',
+    },
       submitted: false,
+      open: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -43,16 +48,21 @@ class NewPost extends React.Component {
       this.props.createPost(this.state.formData, () => {
         this.props.history.push('/');
       });
-      // setTimeout(() => this.setState({ submitted: false }), 5000);
     });
   }
+
+  handleToggle = () => {
+    this.setState({ 
+      open: !this.state.open 
+    });
+  };
 
   getOptions = () => {
     const { categories } = this.props
 
     if (categories.length > 0) {
       return  categories.map(category => (
-        <option key={category.name} value={category.name}>
+        <option key={category.name} value={category.path}>
         {category.name}
         </option>
       ));
@@ -63,92 +73,102 @@ class NewPost extends React.Component {
     const { classes } = this.props;
     const { formData, submitted } = this.state;
     return (
-      <div className={classes.root}>
-        <Grid container spacing={24}>
-          <Paper className={classes.paper}>
-          <div className={classes.margin}>
-            <ValidatorForm
-              ref="form"
-              onSubmit={this.handleSubmit}
+      <div>
+        <DialogTitle id="form-dialog-title">Creating a New Post</DialogTitle>
+        <Divider />      
+
+        <DialogContent>
+          <ValidatorForm
+            ref="form"
+            onSubmit={this.handleSubmit}
+          >
+            <SelectValidator
+              className={classes.selectValidator}
+              id="category"
+              onChange={this.handleChange}
+              label="Select a Category"
+              name="category"
+              margin="dense"
+              variant="outlined"
+              value={formData.category}
+              SelectProps={{
+                native: true
+              }}
+              required
+            >
+              <option value=""></option>
+              { this.getOptions() }
+            </SelectValidator>
+            <br />
+            <TextValidator
+              className={classes.textValidator}
+              onChange={this.handleChange}
+              label="Title"
+              name="title"
+              margin="dense"
+              variant="outlined"
+              value={formData.title}
+              required
+              fullWidth
+              autoComplete="off"
+            />
+            <br />
+            <TextValidator
+              className={classes.textValidator}
+              onChange={this.handleChange}
+              margin="dense"
+              variant="outlined"                
+              label="Content"
+              name="body"
+              multiline
+              rows="3"
+              required
+              fullWidth         
+              value={formData.body}
+              autoComplete="off"                              
+            />
+            <br />
+            <TextValidator
+              className={classes.textValidator}
+              onChange={this.handleChange}
+              label="Author"
+              name="author"
+              margin="dense"
+              variant="outlined"
+              value={formData.author}
+              required
+              fullWidth                
+              autoComplete="off"                
+            />
+            <br />
+            <div className={classes.buttonContainer}>
+              <Button
+                className={classes.button}
+                raised="true"
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={submitted}
               >
-                 <h2 className={classes.heading}>Create new posts</h2>
-                 <TextValidator
-                    className={classes.textValidator}
-                    label="Title"
-                    onChange={this.handleChange}
-                    name="title"
-                    value={formData.title}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                 />
-                 <br />
-                 <TextValidator
-                    className={classes.textValidator}
-                    label="Content"
-                    onChange={this.handleChange}
-                    name="body"
-                    value={formData.body}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                 />
-                 <br />
-                 <TextValidator
-                    className={classes.textValidator}
-                    label="Author"
-                    onChange={this.handleChange}
-                    name="author"
-                    value={formData.author}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                 />
-                 <br />
-                 <SelectValidator
-                    className={classes.selectValidator}
-                    id="category"
-                    onChange={this.handleChange}
-                    name="category"
-                    value={formData.category}
-                    SelectProps={{
-                    native: true
-                    }}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                 >
-                 <option value="">Select an option</option>
-                  { this.getOptions() }
-                 </SelectValidator>
-                 <br />
+                {
+                  (submitted && 'Submitted!')
+                  || (!submitted && 'Submit')
+                }
+              </Button>
 
-                 <div className={classes.buttonContainer}>
-                   <Button
-                      className={classes.button}
-                      raised="true"
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      disabled={submitted}
-                   >
-                       {
-                           (submitted && 'Your form is submitted!')
-                           || (!submitted && 'Submit')
-                       }
-                   </Button>
-
-                   <Button
-                      component={GoToMain}
-                      className={classes.button}
-                      raised="true"
-                      variant="contained"
-                      color="secondary"
-                      disabled={submitted}
-                   >
-                    Cancel
-                   </Button>
-                 </div>
-             </ValidatorForm>
-           </div>
-          </Paper>
-        </Grid>
+              <Button
+                  component={GoToMain}
+                  className={classes.button}
+                  raised="true"
+                  variant="contained"
+                  color="inherit"
+                  disabled={submitted}
+              >
+                Cancel
+              </Button>
+            </div>
+          </ValidatorForm>
+        </DialogContent>
       </div>
     )
   }
@@ -161,40 +181,5 @@ NewPost.propTypes = {
 function mapStateToProps(state) {
   return { categories: state.categories }
 }
-
-const styles = theme => ({
-  root: {
-    marginTop: 75,
-    flexGrow: 1,
-  },
-  margin: {
-   margin: theme.spacing.unit,
-  },
-  paper: {
-    padding: theme.spacing.unit,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  heading: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
-  },
-  textValidator: {
-    width: 500
-  },
-  selectValidator: {
-    width: 500,
-    marginTop: 20
-  },
-  buttonContainer: {
-    margin: theme.spacing.unit,
-    marginLeft: 'auto',
-    marginRight: 0,
-    marginTop: 50
-  },
-  button: {
-    width: 150,
-    margin: 5
-  },
-});
 
 export default withStyles(styles)(connect(mapStateToProps, {createPost, fetchCategories})(NewPost));
