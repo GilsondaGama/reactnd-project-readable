@@ -23,9 +23,6 @@ const styles = theme => ({
     marginRight: 0,
     marginTop: 10
   },
-  DialogTitle: {
-    marginTop: 60
-  },
   button: {
     width: 100,
     margin: 5

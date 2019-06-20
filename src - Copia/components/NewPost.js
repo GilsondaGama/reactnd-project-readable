@@ -8,7 +8,6 @@ import { createPost, fetchCategories } from '../actions';
 import { Link } from 'react-router-dom'
 
 import Divider from '@material-ui/core/Divider';
-import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
@@ -75,11 +74,10 @@ class NewPost extends React.Component {
     const { formData, submitted } = this.state;
     return (
       <div>
-        <DialogTitle id="form-dialog-title" className={classes.DialogTitle}>
-          CREATING A NEW POST
-        </DialogTitle>
+        <DialogTitle id="form-dialog-title">Creating a New Post</DialogTitle>
+        <Divider />      
 
-        <DialogContent>          
+        <DialogContent>
           <ValidatorForm
             ref="form"
             onSubmit={this.handleSubmit}
