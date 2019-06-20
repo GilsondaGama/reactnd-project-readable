@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 import { createPost, fetchCategories } from '../actions';
 import { Link } from 'react-router-dom'
 
-import Divider from '@material-ui/core/Divider';
-import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 

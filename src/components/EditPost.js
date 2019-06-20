@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator, SelectValidator  } from 'react-material-ui-form-validator';
-import NotFound from './shared/NotFound';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+import NotFound from './shared/NotFound'
+import styles from '../styles/StyleNewPost'
 
 const GoToMain = props => <Link to="/" {...props} />
 
@@ -33,10 +36,6 @@ class EditPost extends Component {
     const { post } = this.props
     if (post) {
       const { deleted, timestamp, voteScore, ...values } = post
-      // model['title'] = post.title;
-      // model['body'] = post.body;
-      // model['author'] = post.author;
-      // model['category'] = post.category;
       this.setState({ model: { ...values } });
     }
   }
@@ -60,7 +59,7 @@ class EditPost extends Component {
     const { categories } = this.props
     if (categories.length > 0) {
       return  categories.map(category => (
-        <option key={category.name} value={category.name}>
+        <option key={category.path} value={category.path}>
         {category.name}
         </option>
       ));
@@ -73,128 +72,118 @@ class EditPost extends Component {
       match: { params: { category } },
       classes
     } = this.props
-
     const { model, submitted } = this.state;
-
-
-
-    console.log(this.props)
-    
-
-
 
     return (
       (!post || post.category !== category)
       ? <NotFound />
       :
-      <div className={classes.root}>
-        <Grid container spacing={24}>
-          <Paper className={classes.paper}>
-          <div className={classes.margin}>
-            <ValidatorForm
-              ref="form"
-              onSubmit={this.handleSubmit}
+      <div>
+        <DialogTitle id="form-dialog-title" className={classes.DialogTitle}>
+          EDITING POST
+        </DialogTitle>
+
+        <DialogContent> 
+          <ValidatorForm
+            ref="form"
+            onSubmit={this.handleSubmit}
+          >
+            <SelectValidator
+              className={classes.selectValidator}
+              label="Select a Category"
+              name="category"
+              id="category"
+              onChange={this.handleChange}
+              margin="dense"
+              variant="outlined"                    
+              value={model.category}
+              SelectProps={{ native: true }}
+              disabled={true} 
+              required
+            >
+              <option value=""></option>
+              { this.getOptions() }
+            </SelectValidator>
+            <br />
+
+            <TextValidator
+              className={classes.textValidator}
+              label="Title"
+              name="title"
+              value={model.title}
+              onChange={this.handleChange}
+              margin="dense"
+              variant="outlined"
+              required
+              fullWidth
+              autoComplete="off"
+              InputLabelProps={{ 
+                classes: {
+                  root: classes.inputLabelProps
+                }
+              }}             
+            />
+            <br />
+
+            <TextValidator
+              className={classes.textValidator}
+              onChange={this.handleChange}
+              label="Content"
+              name="body"
+              value={model.body}
+              margin="dense"
+              variant="outlined"                
+              multiline
+              rows="3"
+              required
+              fullWidth         
+              autoComplete="off"   
+            />
+            <br />
+
+            <TextValidator
+              className={classes.textValidator}
+              label="Author"
+              name="author"
+              value={model.author}
+              onChange={this.handleChange}
+              margin="dense"
+              variant="outlined"
+              required
+              fullWidth   
+              disabled={true} 
+            />
+            <br />
+
+            <div className={classes.buttonContainer}>
+              <Button
+                className={classes.button}
+                raised="true"
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={submitted}
               >
-                 <h2 className={classes.heading}>Create new posts</h2>
-                 <TextValidator
-                    className={classes.textValidator}
-                    label="Title"
-                    name="title"
-                    value={model.title}
-                    onChange={this.handleChange}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                    InputLabelProps={{
-                      classes: {
-                        root: classes.inputLabelProps
-                      }
-                    }}
-                 />
-                 <br />
-                 <TextValidator
-                    className={classes.textValidator}
-                    label="Content"
-                    name="body"
-                    value={model.body}
-                    onChange={this.handleChange}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                    InputLabelProps={{
-                      classes: {
-                        root: classes.inputLabelProps
-                      }
-                    }}
-                 />
-                 <br />
-                 <TextValidator
-                    className={classes.textValidator}
-                    label="Author"
-                    name="author"
-                    value={model.author}
-                    onChange={this.handleChange}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                    disabled={true}
-                    InputLabelProps={{
-                      classes: {
-                        root: classes.inputLabelProps
-                      }
-                    }}
-                 />
-                 <br />
-                 <SelectValidator
-                    className={classes.selectValidator}
-                    id="category"
-                    name="category"
-                    label="Category"
-                    value={model.category}
-                    onChange={this.handleChange}
-                    SelectProps={{ native: true }}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                    disabled={true}
-                    InputLabelProps={{
-                      classes: {
-                        root: classes.inputLabelProps
-                      }
-                    }}
-                 >
-                   <option value="">Select an option</option>
-                   { this.getOptions() }
-                 </SelectValidator>
-                 <br />
+                  {
+                      (submitted && 'submitted!')
+                      || (!submitted && 'Submit')
+                  }
+              </Button>
 
-                 <div className={classes.buttonContainer}>
-                   <Button
-                      className={classes.button}
-                      raised="true"
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      disabled={submitted}
-                   >
-                       {
-                           (submitted && 'Your form is submitted!')
-                           || (!submitted && 'Submit')
-                       }
-                   </Button>
-
-                   <Button
-                      component={GoToMain}
-                      className={classes.button}
-                      raised="true"
-                      variant="contained"
-                      color="secondary"
-                      disabled={submitted}
-                   >
-                    Cancel
-                   </Button>
-                 </div>
-             </ValidatorForm>
-           </div>
-          </Paper>
-        </Grid>
-      </div>
+              <Button
+                component={GoToMain}
+                className={classes.button}
+                raised="true"
+                variant="contained"
+                color="inherit"
+                disabled={submitted}
+              >
+              Cancel
+              </Button>
+            </div>
+          </ValidatorForm>
+        </DialogContent>
+      </div>            
     )
   }
 }
@@ -202,48 +191,5 @@ class EditPost extends Component {
 EditPost.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-const styles = theme => ({
-  root: {
-    marginTop: 75,
-    flexGrow: 1,
-     flexWrap: 'wrap',
-  },
-  margin: {
-   margin: theme.spacing.unit,
-  },
-  heading: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
-  },
-  paper: {
-    padding: theme.spacing.unit,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  textValidator: {
-    marginLeft: theme.spacing.unit,
-     marginRight: theme.spacing.unit,
-     width: 500,
-     marginTop: 30,
-  },
-  inputLabelProps: {
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  selectValidator: {
-    width: 500,
-    marginTop: 30,
-  },
-  buttonContainer: {
-    margin: theme.spacing.unit,
-    marginLeft: 'auto',
-    marginRight: 0,
-    marginTop: 50
-  },
-  button: {
-    width: 150,
-    margin: 5
-  },
-});
 
 export default withStyles(styles)(EditPost);
