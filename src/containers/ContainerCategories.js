@@ -7,9 +7,6 @@ import {
 import Categories from '../components/Categories'
 
 function mapStateToProps(state) {
-  
-  console.log(state)
-
   return {
     categories: state.categories
   }
@@ -19,4 +16,3 @@ export default connect(mapStateToProps, {
   fetchCategories,
   fetchCategoryPosts
 })(Categories);
-

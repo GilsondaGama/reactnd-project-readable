@@ -11,16 +11,15 @@ const styles = theme => ({
   },
   badge: {
     top: '50%',
-    padding: 15, 
+    padding: 15,
   },
   card: {
     marginTop: 15,  
+    backgroundColor: blue[200],    
   },
   margin: {
-    backgroundColor: blue[500],       
-  },
-  CardContent: {
-    backgroundColor: blue[800],
+    marginLeft:30,     
+    marginRight:30,     
   },
   CardHeader: {
     backgroundColor: blue[800],
@@ -28,10 +27,10 @@ const styles = theme => ({
   },  
   actions: {
     display: 'flex',
-    backgroundColor: blue[200],    
+    backgroundColor: blue[400],    
   },
   avatar: {
-    backgroundColor: blue[500],
+    backgroundColor: blue[800],
   },
 });
 

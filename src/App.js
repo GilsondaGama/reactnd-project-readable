@@ -1,35 +1,51 @@
-import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 
-import reducers from './reducers'
-import { Provider } from 'react-redux';
-import Routes from './components/Routes';
+import Main from './containers/ContainerMain';
+import PostDetail from './containers/ContainerPostDetail';
+import ContainerEditPost from './containers/ContainerEditPost';
+import NewPost from './components/NewPost';
+import ResponsiveMenu from './components/ResponsiveMenu';
 
-require('dotenv').config();
+import styles from './styles/StyleCategories'
 
-// store with middleware and redux devtools extension enabled
-const store = createStore(
-  reducers,
-  composeWithDevTools(
-    applyMiddleware(thunk)
-  )
-);
+class App extends Component {
+  state = {
+    open: false,
+  };
 
-// connect the app to the store and render it
-const App = () => {
-  return (
-    <Provider store={store}>
-      <Routes />
-    </Provider>
-  );
+  render() {
+    const { classes } = this.props;
+    const { open } = this.state;
+
+    return (
+      <BrowserRouter>
+        <div className={classes.root}>
+          <ResponsiveMenu onChangeDrawer={this.onChangeDrawer} />
+            <main
+              className={classNames(classes.content, {
+                [classes.contentShift]: open,
+              })}
+            >
+              <Switch>
+                <Route path="/" exact component={Main} />
+                <Route path="/post/new" exact component={NewPost} />
+                <Route path="/:category/edit/:id" children={props => <ContainerEditPost {...props} />} />
+                <Route path="/:category" exact component={props => <Main {...props} />} />
+                <Route path="/:category/:id" exact component={props => <PostDetail {...props} />} />
+              </Switch>
+            </main>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 
-export default App;
-
-// import * as serviceWorker from './serviceWorker';
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+export default withStyles(styles)(App);

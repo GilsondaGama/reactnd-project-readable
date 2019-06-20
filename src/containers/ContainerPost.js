@@ -4,8 +4,8 @@ import {
     fetchCommentsCount,
 } from '../actions';
 
-import Post from '../components/PostCard'
-//import Post from '../components/Post'
+
+import SinglePost from '../components/SinglePost'
 
 function mapStateToProps (state, ownProps) {
   return {}
@@ -14,4 +14,4 @@ function mapStateToProps (state, ownProps) {
 export default connect(mapStateToProps, {
   voteForPost,
   fetchCommentsCount
-})(Post)
+})(SinglePost)

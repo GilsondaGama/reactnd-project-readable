@@ -2,7 +2,7 @@ import { blue } from '@material-ui/core/colors';
 
 const styles = theme => ({
   root: {
-    marginTop: 1,
+    marginTop: 60,
   },
   appBar: {  
     backgroundColor: blue[300],  
@@ -17,7 +17,7 @@ const styles = theme => ({
     backgroundColor: blue[800],  
   },  
   select: {
-    color: theme.palette.common.white,
+    color: blue[900],  
     marginLeft: 7,
   },
 });

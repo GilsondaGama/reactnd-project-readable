@@ -31,15 +31,6 @@ const styles = theme => ({
       width: `calc(100% - ${drawerWidth}px)`,
     },
   },
-  ListText: {
-    color: theme.palette.common.white,
-  },
-  menuButton: {
-    marginRight: 10,
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     backgroundColor: blueGrey[colorBack],  
@@ -49,10 +40,19 @@ const styles = theme => ({
     marginTop: -30,
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
-    backgroundColor: blueGrey[600],    
+    
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
+  },
+  ListText: {
+    color: theme.palette.common.white,
+  },
+  menuButton: {
+    marginRight: 15,
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
   menuItem: {
     color: theme.palette.common.white,
@@ -60,9 +60,9 @@ const styles = theme => ({
     '& $icon': {
       color: theme.palette.common.white,
       backgroundColor: blueGrey[800],
-  },
+    },
     '&:focus': {
-      color: blue[600],     
+      color: blue[700],     
       backgroundColor: blueGrey[700],
       '& $primary, & $icon': {
         color: blue[600],

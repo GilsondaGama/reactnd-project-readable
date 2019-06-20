@@ -24,11 +24,11 @@ import IconRedux from '@material-ui/icons/OpenWith';
 import IconUdacity from '@material-ui/icons/School';
 import IconReact from '@material-ui/icons/ImportantDevices';
 
-import { timestampToDate } from '../utilities/timestampToDate';
-import { capitalize } from '../utilities/capitalize';
-import styles from '../styles/StylePosts'
+import { timestampToDate } from '../utilits/timestampToDate';
+import { capitalize } from '../utilits/capitalize';
+import styles from '../styles/StyleSinglePost'
 
-class PostCard extends Component {
+class SinglePost extends Component {
   state = { _commentCount: 0 }
 
   renderIcon = (icon) => {
@@ -50,8 +50,7 @@ class PostCard extends Component {
   }  
 
   render() {
-    const { classes, post, onDeletePost, commentCount, voteForPost,
-    match: { params: { id } } } = this.props;
+    const { classes, post, onDeletePost, commentCount, voteForPost } = this.props;
 
     return (
       <Card className={classes.card}>
@@ -113,7 +112,7 @@ class PostCard extends Component {
           >
             <Badge 
               badgeContent={commentCount ? commentCount : this.state._commentCount} 
-              color="primary"
+              color="secondary"
               className={classes.chipMargin}
             >
               <Comment />
@@ -126,12 +125,13 @@ class PostCard extends Component {
                 <IconBorderColor />
               </Avatar>
             }
-            label="Edit" 
+            label="Edit Post" 
             clickable 
             className={classes.chip} 
-            color="primary"    
-            component={Link} to={`/${post.category}/edit/${post.id}`}            
+            color="primary"       
+            component={Link} to={`/${post.category}/edit/${post.id}`}           
           />
+
           <Chip
             avatar={
               <Avatar>
@@ -152,10 +152,10 @@ class PostCard extends Component {
   }
 }
 
-PostCard.propTypes = {
+SinglePost.propTypes = {
   classes: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(PostCard));
-//export default withStyles(styles)(PostCard);
+export default withRouter(withStyles(styles)(SinglePost));
+//export default withStyles(styles)(SinglePost);

@@ -4,7 +4,7 @@ import {
   editPost,
 } from '../actions';
 
-import EditPost from '../components/NewPost';
+import EditPost from '../components/EditPost';
 
 function mapStateToProps(state, ownProps) {
   return {
