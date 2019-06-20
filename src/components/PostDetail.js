@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import PostContainer from '../containers/ContainerPost';
 import NotFound from './shared/NotFound';
-import CommentsListContainer from '../containers/CommentsList';
+import ContainerCommentsList from '../containers/ContainerCommentsList';
 
 class PostDetail extends Component {
   state = {
@@ -45,7 +45,7 @@ class PostDetail extends Component {
             </Grid>
 
             <br />
-            <CommentsListContainer
+            <ContainerCommentsList
               postCategory={post.category}
               postId={post.id}
               updatePostCommentsCount={this.updatePostCommentsCount}

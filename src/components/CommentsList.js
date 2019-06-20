@@ -5,8 +5,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
-import CommentContainer from '../containers/Comment';
+import ContainerComment from '../containers/ContainerComment';
 import NewComment from './NewComment';
+
+import { blue } from '@material-ui/core/colors';
 
 class CommentsList extends Component {
   componentWillMount() {
@@ -43,7 +45,7 @@ class CommentsList extends Component {
         return (
           <Card key={id} className={classes.card}>
             <List>
-              <CommentContainer
+              <ContainerComment
                 postId={postId}
                 comment={comment}
                 onDeleted={this.onDeleted}
@@ -73,8 +75,12 @@ const styles = theme => ({
   card: {
     marginTop: 10,
     maxWidth: '100%',
-    backgroundColor: '#eeeeee'
+    backgroundColor: blue[100],  
   },
+  badge: {
+    backgroundColor: blue[300],  
+    padding: 15,
+  },  
 });
 
 CommentsList.propTypes = {

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import { Drawer, Divider, IconButton, CssBaseline,
-         AppBar, Toolbar, Typography, Hidden, Menu} from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu';
+         AppBar, Toolbar, Typography, Hidden} from '@material-ui/core'
 
 import ContainerCategories from '../containers/ContainerCategories';
 import logoReact from '../assets/LogoReactMenu.svg'
@@ -58,8 +57,7 @@ class ResponsiveMenu extends Component {
               onClick={this.handleDrawerToggle}
               className={classes.menuButton}
             >
-              <MenuIcon />
-              <Menu />
+
             </IconButton>               
 
             <Typography variant = "subtitle1" color = "inherit">

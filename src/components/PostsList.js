@@ -63,7 +63,7 @@ class PostsList extends Component {
         <div className={classes.root}>        
           <AppBar position="static" className={classes.appBar}>
             <Toolbar variant="dense" className={classes.toolBar}>
-              <Typography variant="subtitle1" color="primary" Wrap>
+              <Typography variant="subtitle1" color="primary">
                 You can comment on an existing or create a new post, Sort by:
 
               <Select 

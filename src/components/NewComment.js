@@ -6,7 +6,9 @@ import Card from '@material-ui/core/Card';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import NearMe from '@material-ui/icons/NearMe';
+import AddComment from '@material-ui/icons/AddComment';
+
+import { blue } from '@material-ui/core/colors';
 
 class NewComment extends Component {
 
@@ -67,9 +69,9 @@ class NewComment extends Component {
             variant="contained"
             color="primary"
             className={classes.button}>
-            Send
+            Add
             <Icon className={classes.rightIcon}>
-              <NearMe />
+              <AddComment />
             </Icon>
           </Button>
         </ValidatorForm>
@@ -82,14 +84,16 @@ class NewComment extends Component {
 const styles = theme => ({
   cardComment: {
     maxWidth: '100%',
-    backgroundColor: 'white'
+    //backgroundColor: 'white'
+    backgroundColor: blue[200], 
   },
   inputLabelProps: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   inputbackground: {
-    background: 'white'
+    //background: 'white'
+    backgroundColor: blue[100], 
   },
   button: {
     // margin: theme.spacing.unit,
