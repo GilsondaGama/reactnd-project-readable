@@ -28,16 +28,33 @@ Lastly, as this was a Redux assignment, it was required that **all** state lives
 
 
 
-## Start Developing
+## Installation
 
-To get started developing right away:
+Install all necessary modules to run the current project.
 
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `npm start`
+```bash
+$ git clone https://github.com/GilsondaGama/ReactND-Project-Readable
+$ cd reactnd-project-readable/
+$ npm install
+$ cd server/
+$ npm install
+```
+
+## Development
+
+First, start the API backend. It will be served on `http://localhost:5001/api/`:
+
+```bash
+$ cd reactnd-project-readable/server/
+$ node server
+```
+
+Then, go back to the root of the project and run the development server in another terminal. 
+The app will be served with live reloading on `http://localhost:3000`.
+
+```bash
+$ cd reactnd-project-readable/
+$ npm start
     
     
 ## Contributing
