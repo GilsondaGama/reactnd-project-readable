@@ -23,10 +23,12 @@ Lastly, as this was a Redux assignment, it was required that **all** state lives
 ## Stack
 - React & Redux
 - Redux Thunk
-- Material UI
-` ESLint AirBnb
-- 
-
+- Material-UI
+- ESLint AirBnb
+- Axios
+- Lodash
+- Prop-types
+- Material-Ui Form Validator
 
 
 ## Installation
