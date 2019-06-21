@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -26,126 +26,131 @@ import IconReact from '@material-ui/icons/ImportantDevices';
 
 import { timestampToDate } from '../utilits/timestampToDate';
 import { capitalize } from '../utilits/capitalize';
-import styles from '../styles/StyleSinglePost'
+import styles from '../styles/StyleSinglePost';
 
 class SinglePost extends Component {
-  state = { _commentCount: 0 }
+  state = { _commentCount: 0 };
 
   renderIcon = (icon) => {
     switch (icon.toLowerCase()) {
       case 'react':
-        return <IconReact />
+        return <IconReact />;
       case 'redux':
-        return <IconRedux />
+        return <IconRedux />;
       case 'udacity':
-        return <IconUdacity />
+        return <IconUdacity />;
       default:
-        return <IconHome />       
+        return <IconHome />;
     }
-  }  
+  };
 
   componentWillMount() {
     const { post } = this.props;
-    this.props.fetchCommentsCount(post.id, (data) => { this.setState({ _commentCount: data.amount }); });
-  }  
+    this.props.fetchCommentsCount(post.id, (data) => {
+      this.setState({ _commentCount: data.amount });
+    });
+  }
 
   render() {
-    const { classes, post, onDeletePost, commentCount, voteForPost } = this.props;
+    const {
+      classes, post, onDeletePost, commentCount, voteForPost,
+    } = this.props;
 
     return (
       <Card className={classes.card}>
         <CardHeader
-          avatar={
-            <Avatar className={classes.avatar}>              
-              {this.renderIcon(post.category)}
-            </Avatar>
-          }
-          title={
+          avatar={<Avatar className={classes.avatar}>{this.renderIcon(post.category)}</Avatar>}
+          title={(
             <Typography component="h5" variant="h5">
               {post.title}
             </Typography>
-          }
+)}
           subheader={`Posted by ${post.author} - ${timestampToDate(post.timestamp)}`}
         />
 
-        { post.body.length > 0 &&(
+        {post.body.length > 0 && (
           <CardContent>
             <Typography component="p">
-              <b>{`( ${capitalize(post.category)} )`}</b> {post.body}
+              <b>{`( ${capitalize(post.category)} )`}</b>
+              {' '}
+              {post.body}
             </Typography>
           </CardContent>
         )}
 
         <CardActions className={classes.actions} disableActionSpacing>
-          <Badge badgeContent={post.voteScore} color="primary" >
+          <Badge badgeContent={post.voteScore} color="primary">
             <GradeIcon />
-          </Badge>              
+          </Badge>
           <Chip
-            avatar={            
-              <Avatar >
+            avatar={(
+              <Avatar>
                 <IconThumbUpAlt />
               </Avatar>
-            }
-            label="Like" 
-            clickable 
-            className={classes.chip} 
-            color="primary" 
-            onClick={() => voteForPost(post.id, 'upVote')}         
+)}
+            label="Like"
+            clickable
+            className={classes.chip}
+            color="primary"
+            onClick={() => voteForPost(post.id, 'upVote')}
           />
           <Chip
-            avatar={
+            avatar={(
               <Avatar>
                 <IconThumbDownAlt />
               </Avatar>
-            }
-            label="Dislike" 
-            clickable 
-            className={classes.chip} 
-            color="primary" 
-            onClick={() => voteForPost(post.id, 'downVote')}         
+)}
+            label="Dislike"
+            clickable
+            className={classes.chip}
+            color="primary"
+            onClick={() => voteForPost(post.id, 'downVote')}
           />
 
-          <IconButton 
-            aria-label="Comment Count" 
+          <IconButton
+            aria-label="Comment Count"
             className={classes.margin}
-            component={Link} to={`/${post.category}/${post.id}`}
+            component={Link}
+            to={`/${post.category}/${post.id}`}
           >
-            <Badge 
-              badgeContent={commentCount ? commentCount : this.state._commentCount} 
+            <Badge
+              badgeContent={commentCount || this.state._commentCount}
               color="secondary"
               className={classes.chipMargin}
             >
               <Comment />
             </Badge>
-          </IconButton>    
+          </IconButton>
 
           <Chip
-            avatar={
+            avatar={(
               <Avatar>
                 <IconBorderColor />
               </Avatar>
-            }
-            label="Edit Post" 
-            clickable 
-            className={classes.chip} 
-            color="primary"       
-            component={Link} to={`/${post.category}/edit/${post.id}`}           
+)}
+            label="Edit Post"
+            clickable
+            className={classes.chip}
+            color="primary"
+            component={Link}
+            to={`/${post.category}/edit/${post.id}`}
           />
 
           <Chip
-            avatar={
+            avatar={(
               <Avatar>
                 <IconDelete />
               </Avatar>
+)}
+            label="Delete"
+            clickable
+            className={classes.chip}
+            color="secondary"
+            onClick={() => onDeletePost(post.id, () => {
+              this.props.history.push('/');
+            })
             }
-            label="Delete" 
-            clickable 
-            className={classes.chip} 
-            color="secondary" 
-            onClick={() =>
-              onDeletePost(post.id, () => { this.props.history.push('/') } )}     
           />
-
         </CardActions>
       </Card>
     );
@@ -154,8 +159,8 @@ class SinglePost extends Component {
 
 SinglePost.propTypes = {
   classes: PropTypes.object.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 export default withRouter(withStyles(styles)(SinglePost));
-//export default withStyles(styles)(SinglePost);
+// export default withStyles(styles)(SinglePost);

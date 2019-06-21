@@ -26,32 +26,36 @@ const SHOW_COMMENT = 'SHOW_COMMENT';
 
 class Comment extends Component {
   state = {
-    scene: SHOW_COMMENT
-  }
+    scene: SHOW_COMMENT,
+  };
 
   toggleScene = (scene) => {
     this.setState({
-      scene: scene
+      scene,
     });
-  }
+  };
 
   onEditComment = (updatedComment) => {
-    const { postId, comment, editComment, fetchComments } = this.props
+    const {
+      postId, comment, editComment, fetchComments,
+    } = this.props;
     const _AUTHOR = 'anonymous';
     const values = {
       body: updatedComment,
-      author: _AUTHOR
-    }
+      author: _AUTHOR,
+    };
     editComment(comment.id, values, () => {
       fetchComments(postId);
       this.setState({
-        scene: SHOW_COMMENT
+        scene: SHOW_COMMENT,
       });
     });
-  }
+  };
 
   renderComment() {
-    const { classes, comment, voteForComment, onDeleted } = this.props;
+    const {
+      classes, comment, voteForComment, onDeleted,
+    } = this.props;
 
     if (this.state.scene === SHOW_COMMENT) {
       return (
@@ -61,19 +65,22 @@ class Comment extends Component {
           </ListItemAvatar>
           <ListItemText
             primary={comment.author}
-            secondary={
+            secondary={(
               <React.Fragment>
                 <Typography component="span" className={classes.inline} color="textPrimary">
                   {timestampToDate(comment.timestamp)}
                 </Typography>
                 {` — ${comment.body}`}
               </React.Fragment>
-            }
+)}
           />
           <CardActions className={classes.actions} disableActionSpacing>
-
             <IconButton aria-label="Vote Score">
-              <Badge badgeContent={comment.voteScore ? comment.voteScore : 0} color="primary" classes={{ badge: classes.badge }}>
+              <Badge
+                badgeContent={comment.voteScore ? comment.voteScore : 0}
+                color="primary"
+                classes={{ badge: classes.badge }}
+              >
                 <Star />
               </Badge>
             </IconButton>
@@ -82,41 +89,35 @@ class Comment extends Component {
               <ThumbUpAlt />
             </IconButton>
 
-            <IconButton aria-label="Down Vote" onClick={() => voteForComment(comment.id, 'downVote')}>
+            <IconButton
+              aria-label="Down Vote"
+              onClick={() => voteForComment(comment.id, 'downVote')}
+            >
               <ThumbDownAlt />
             </IconButton>
 
-            {/*<Link to={`/${postCategory}/${comment.parentId}/comments/edit/${comment.id}`}>*/}
-              <IconButton aria-label="Edit Comment" onClick={() => this.toggleScene(EDIT_COMMENT)}>
-                <Grid item xs={8}>
-                  <BorderColor />
-                </Grid>
-              </IconButton>
-            {/*</Link>*/}
+            {/* <Link to={`/${postCategory}/${comment.parentId}/comments/edit/${comment.id}`}> */}
+            <IconButton aria-label="Edit Comment" onClick={() => this.toggleScene(EDIT_COMMENT)}>
+              <Grid item xs={8}>
+                <BorderColor />
+              </Grid>
+            </IconButton>
+            {/* </Link> */}
 
             <IconButton aria-label="Delete Comment" onClick={() => onDeleted(comment.id)}>
               <Grid item xs={8}>
                 <DeleteIcon />
               </Grid>
             </IconButton>
-
           </CardActions>
         </ListItem>
       );
-    } else {
-      return (
-        <EditComment
-          comment={comment.body}
-          onEditComment={this.onEditComment}
-        />
-      );
     }
+    return <EditComment comment={comment.body} onEditComment={this.onEditComment} />;
   }
 
   render() {
-    return (
-      this.renderComment()
-    );
+    return this.renderComment();
   }
 }
 

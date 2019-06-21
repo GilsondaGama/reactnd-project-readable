@@ -2,28 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator, SelectValidator  } from 'react-material-ui-form-validator';
+import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
 import { connect } from 'react-redux';
-import { createPost, fetchCategories } from '../actions';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { createPost, fetchCategories } from '../actions';
 
-import styles from '../styles/StyleNewPost'
+import styles from '../styles/StyleNewPost';
 
-const GoToMain = props => <Link to="/" {...props} />
+const GoToMain = props => <Link to="/" {...props} />;
 
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formData: {
-      title: '',
-      body: '',
-      author: '',
-      category: '',
-    },
+        title: '',
+        body: '',
+        author: '',
+        category: '',
+      },
       submitted: false,
       open: true,
     };
@@ -33,7 +33,7 @@ class NewPost extends React.Component {
   }
 
   componentWilMount() {
-    this.props.fetchCategories()
+    this.props.fetchCategories();
   }
 
   handleChange(event) {
@@ -51,18 +51,18 @@ class NewPost extends React.Component {
   }
 
   handleToggle = () => {
-    this.setState({ 
-      open: !this.state.open 
+    this.setState({
+      open: !this.state.open,
     });
   };
 
   getOptions = () => {
-    const { categories } = this.props
+    const { categories } = this.props;
 
     if (categories.length > 0) {
-      return  categories.map(category => (
+      return categories.map(category => (
         <option key={category.name} value={category.path}>
-        {category.name}
+          {category.name}
         </option>
       ));
     }
@@ -77,11 +77,8 @@ class NewPost extends React.Component {
           CREATING A NEW POST
         </DialogTitle>
 
-        <DialogContent>          
-          <ValidatorForm
-            ref="form"
-            onSubmit={this.handleSubmit}
-          >
+        <DialogContent>
+          <ValidatorForm ref="form" onSubmit={this.handleSubmit}>
             <SelectValidator
               className={classes.selectValidator}
               id="category"
@@ -92,12 +89,12 @@ class NewPost extends React.Component {
               variant="outlined"
               value={formData.category}
               SelectProps={{
-                native: true
+                native: true,
               }}
               required
             >
-              <option value=""></option>
-              { this.getOptions() }
+              <option value="" />
+              {this.getOptions()}
             </SelectValidator>
             <br />
             <TextValidator
@@ -117,15 +114,15 @@ class NewPost extends React.Component {
               className={classes.textValidator}
               onChange={this.handleChange}
               margin="dense"
-              variant="outlined"                
+              variant="outlined"
               label="Content"
               name="body"
               multiline
               rows="3"
               required
-              fullWidth         
+              fullWidth
               value={formData.body}
-              autoComplete="off"                              
+              autoComplete="off"
             />
             <br />
             <TextValidator
@@ -137,8 +134,8 @@ class NewPost extends React.Component {
               variant="outlined"
               value={formData.author}
               required
-              fullWidth                
-              autoComplete="off"                
+              fullWidth
+              autoComplete="off"
             />
             <br />
             <div className={classes.buttonContainer}>
@@ -150,19 +147,16 @@ class NewPost extends React.Component {
                 color="primary"
                 disabled={submitted}
               >
-                {
-                  (submitted && 'Submitted!')
-                  || (!submitted && 'Submit')
-                }
+                {(submitted && 'Submitted!') || (!submitted && 'Submit')}
               </Button>
 
               <Button
-                  component={GoToMain}
-                  className={classes.button}
-                  raised="true"
-                  variant="contained"
-                  color="inherit"
-                  disabled={submitted}
+                component={GoToMain}
+                className={classes.button}
+                raised="true"
+                variant="contained"
+                color="inherit"
+                disabled={submitted}
               >
                 Cancel
               </Button>
@@ -170,7 +164,7 @@ class NewPost extends React.Component {
           </ValidatorForm>
         </DialogContent>
       </div>
-    )
+    );
   }
 }
 
@@ -179,7 +173,12 @@ NewPost.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return { categories: state.categories }
+  return { categories: state.categories };
 }
 
-export default withStyles(styles)(connect(mapStateToProps, {createPost, fetchCategories})(NewPost));
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    { createPost, fetchCategories },
+  )(NewPost),
+);

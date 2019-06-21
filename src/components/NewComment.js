@@ -11,32 +11,31 @@ import AddComment from '@material-ui/icons/AddComment';
 import { blue } from '@material-ui/core/colors';
 
 class NewComment extends Component {
-
-  state = { textfield: '' }
+  state = { textfield: '' };
 
   onKeyPress = (event) => {
     if (event.key === 'Enter' && event.target.value !== '') {
-      let _AUTHOR = 'anonymous';
-      let comment = this.state.textfield
+      const _AUTHOR = 'anonymous';
+      const comment = this.state.textfield;
       this.setState({ textfield: '' }); // clear textfield
       this.props.onCreateComment(comment, _AUTHOR);
     }
-  }
+  };
 
   onFormSubmit = () => {
     if (this.state.textfield !== '') {
-      let _AUTHOR = 'anonymous';
-      let comment = this.state.textfield
+      const _AUTHOR = 'anonymous';
+      const comment = this.state.textfield;
       this.setState({ textfield: '' }); // clear textfield
       this.props.onCreateComment(comment, _AUTHOR);
     }
-  }
+  };
 
   handleTextFieldChange = (event) => {
     this.setState({
-      textfield: event.target.value
+      textfield: event.target.value,
     });
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -44,37 +43,33 @@ class NewComment extends Component {
     return (
       <Grid item xs={12}>
         <Card className={classes.cardComment} style={{ padding: 10 }}>
-        <ValidatorForm ref="form" onSubmit={this.onFormSubmit}>
-          <TextValidator
-            id="comment-field"
-            name="comment-field"
-            label="Type your comment"
-            value={this.state.textfield}
-            onChange={this.handleTextFieldChange}
-            onKeyPress={this.onKeyPress}
-            validators={['required']}
-            errorMessages={['This comment field is required.']}
-            className={classes.inputbackground}
-            fullWidth
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              classes: {
-                root: classes.inputLabelProps
-              }
-            }}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}>
-            Add
-            <Icon className={classes.rightIcon}>
-              <AddComment />
-            </Icon>
-          </Button>
-        </ValidatorForm>
+          <ValidatorForm ref="form" onSubmit={this.onFormSubmit}>
+            <TextValidator
+              id="comment-field"
+              name="comment-field"
+              label="Type your comment"
+              value={this.state.textfield}
+              onChange={this.handleTextFieldChange}
+              onKeyPress={this.onKeyPress}
+              validators={['required']}
+              errorMessages={['This comment field is required.']}
+              className={classes.inputbackground}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              InputLabelProps={{
+                classes: {
+                  root: classes.inputLabelProps,
+                },
+              }}
+            />
+            <Button type="submit" variant="contained" color="primary" className={classes.button}>
+              Add
+              <Icon className={classes.rightIcon}>
+                <AddComment />
+              </Icon>
+            </Button>
+          </ValidatorForm>
         </Card>
       </Grid>
     );
@@ -84,16 +79,16 @@ class NewComment extends Component {
 const styles = theme => ({
   cardComment: {
     maxWidth: '100%',
-    //backgroundColor: 'white'
-    backgroundColor: blue[200], 
+    // backgroundColor: 'white'
+    backgroundColor: blue[200],
   },
   inputLabelProps: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   inputbackground: {
-    //background: 'white'
-    backgroundColor: blue[100], 
+    // background: 'white'
+    backgroundColor: blue[100],
   },
   button: {
     // margin: theme.spacing.unit,
@@ -105,6 +100,6 @@ const styles = theme => ({
 
 NewComment.propTypes = {
   classes: PropTypes.object.isRequired,
-}
+};
 
 export default withStyles(styles)(NewComment);

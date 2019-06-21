@@ -13,7 +13,7 @@ describe('<Post />', () => {
 
   const POST_OBJECT = {
     title: 'Reactnd Project Readable - Testing',
-    author: 'Filipe Natanael',
+    author: 'Gilson da Gama',
     timestamp: '1468479767190',
     category: 'redux',
     body: 'Just kidding. It takes more than 10 minutes to learn technology.',

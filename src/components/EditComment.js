@@ -6,13 +6,12 @@ import Card from '@material-ui/core/Card';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 class EditComment extends Component {
-
-  state = { textfield: '' }
+  state = { textfield: '' };
 
   componentDidMount() {
     const { comment } = this.props;
     this.setState({
-      textfield: comment
+      textfield: comment,
     });
   }
 
@@ -21,13 +20,13 @@ class EditComment extends Component {
       const { onEditComment } = this.props;
       onEditComment(event.target.value);
     }
-  }
+  };
 
   handleTextFieldChange = (event) => {
     this.setState({
-      textfield: event.target.value
+      textfield: event.target.value,
     });
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -51,8 +50,8 @@ class EditComment extends Component {
               variant="outlined"
               InputLabelProps={{
                 classes: {
-                  root: classes.inputLabelProps
-                }
+                  root: classes.inputLabelProps,
+                },
               }}
             />
           </ValidatorForm>
@@ -65,19 +64,19 @@ class EditComment extends Component {
 const styles = theme => ({
   cardComment: {
     maxWidth: '100%',
-    backgroundColor: '#eeeeee'
+    backgroundColor: '#eeeeee',
   },
   inputLabelProps: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   inputbackground: {
-    background: '#eeeeee'
+    background: '#eeeeee',
   },
 });
 
 EditComment.propTypes = {
   classes: PropTypes.object.isRequired,
-}
+};
 
 export default withStyles(styles)(EditComment);

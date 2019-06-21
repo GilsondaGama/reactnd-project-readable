@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { MemoryRouter, withRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import reducer from '../reducers/index'
+import reducer from '../reducers/index';
 import Main from '../components/Main';
 
 /* To enable Redux DevTools Extension */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const drawerWidth = 240;
 
@@ -16,11 +16,7 @@ const drawerWidth = 240;
 Other components that need access to these properties can be wrapped with a call to the withRouter HOC. */
 const TMain = withRouter(Main);
 
-const store = createStore(reducer,
-  composeEnhancers(
-    applyMiddleware(thunk)
-  )
-);
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 storiesOf('Main', module)
   .addDecorator(story => (
@@ -28,4 +24,4 @@ storiesOf('Main', module)
       <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
     </Provider>
   ))
-  .add('drawable behavior', () => <TMain />)
+  .add('drawable behavior', () => <TMain />);

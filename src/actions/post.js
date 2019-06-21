@@ -10,28 +10,32 @@ import {
   POST_WAS_VOTED,
 } from './types';
 
-
-axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
+axios.defaults.headers.common.Authorization = {
+  Authorization: 'whatever-you-want',
+  Accept: 'application/json',
+};
 
 export function fetchPosts() {
-  return dispatch => {
-    axios.get(`${BASE_URL}/posts`)
-    .then(res => dispatch(fetchPostsSuccess(res.data)));
-  }
+  return (dispatch) => {
+    axios.get(`${BASE_URL}/posts`).then(res => dispatch(fetchPostsSuccess(res.data)));
+  };
 }
 
 export function fetchPost(id, callback) {
-  return dispatch => {
-    axios.get(`${BASE_URL}/posts/${id}`)
-    .then(res => {
-      dispatch(fetchPostSuccess(res.data))
-      setTimeout(function(){ callback() }, 100);
-    })
-  }
+  return (dispatch) => {
+    axios.get(`${BASE_URL}/posts/${id}`).then((res) => {
+      dispatch(fetchPostSuccess(res.data));
+      setTimeout(() => {
+        callback();
+      }, 100);
+    });
+  };
 }
 
 export function createPost(values, callback) {
-  const { title, body, author, category } = values;
+  const {
+    title, body, author, category,
+  } = values;
 
   const data = {
     id: guid(),
@@ -39,92 +43,88 @@ export function createPost(values, callback) {
     title,
     body,
     author,
-    category
-  }
+    category,
+  };
 
-  return dispatch => {
-    axios.post(`${BASE_URL}/posts`, data)
-    .then(res => {
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/posts`, data).then((res) => {
       callback();
       dispatch(createPostSuccess(res.data));
     });
-
-  }
+  };
 }
 
 export function editPost(id, values, callback) {
-  return dispatch => {
-    axios.put(`${BASE_URL}/posts/${id}`, values)
-    .then(res => {
+  return (dispatch) => {
+    axios.put(`${BASE_URL}/posts/${id}`, values).then((res) => {
       callback();
-      dispatch(editPostSuccess(res.data))
+      dispatch(editPostSuccess(res.data));
     });
-  }
+  };
 }
 
 function editPostSuccess(data) {
   return {
     type: POST_WAS_EDITED,
-    payload: data
-  }
+    payload: data,
+  };
 }
 
 export function deletePost(id, callback) {
-  return dispatch => {
-    axios.delete(`${BASE_URL}/posts/${id}`)
-    .then(res => {
-      callback()
+  return (dispatch) => {
+    axios.delete(`${BASE_URL}/posts/${id}`).then((res) => {
+      callback();
       dispatch(deletePostSuccess(id));
     });
-  }
+  };
 }
 
 export function voteForPost(id, vote) {
-  return dispatch => {
-    axios.post(`${BASE_URL}/posts/${id}`, { option: vote })
-    .then(res => dispatch(votedPostSuccess(res.data)))
-  }
+  return (dispatch) => {
+    axios
+      .post(`${BASE_URL}/posts/${id}`, { option: vote })
+      .then(res => dispatch(votedPostSuccess(res.data)));
+  };
 }
 
 function fetchPostsSuccess(data) {
   return {
     type: FETCH_POSTS,
-    payload: data
+    payload: data,
   };
 }
-
 
 function fetchPostSuccess(data) {
   return {
     type: FETCH_POST_ID,
-    payload: data
+    payload: data,
   };
 }
 
 function createPostSuccess(data) {
   return {
     type: POST_WAS_CREATED,
-    payload: data
+    payload: data,
   };
 }
 
 export function postSortOrder(sortType) {
   return {
     type: POST_SORT_ORDER,
-    payload: sortType
-  }
+    payload: sortType,
+  };
 }
 
 function deletePostSuccess(data) {
   return {
     type: POST_WAS_DELETED,
-    payload: data
-  }
+    payload: data,
+  };
 }
 
 function votedPostSuccess(data) {
   return {
     type: POST_WAS_VOTED,
-    payload: data
-  }
+    payload: data,
+  };
 }

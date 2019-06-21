@@ -3,7 +3,6 @@ import { blue } from '@material-ui/core/colors';
 
 const drawerWidth = 200;
 const colorBack = 800;
-
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -13,7 +12,6 @@ const styles = theme => ({
       width: drawerWidth,
       flexShrink: 0,
     },
- 
   },
   drawerHeader: {
     paddingTop: 8,
@@ -21,11 +19,11 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: '0 10px',
-    backgroundColor: blueGrey[900],    
+    backgroundColor: blueGrey[900],
   },
   appBar: {
-    backgroundColor: blueGrey[colorBack],  
-    color: blueGrey[100],  
+    backgroundColor: blueGrey[colorBack],
+    color: blueGrey[100],
     marginLeft: drawerWidth,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -33,14 +31,13 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    backgroundColor: blueGrey[colorBack],  
-    width: drawerWidth,      
+    backgroundColor: blueGrey[colorBack],
+    width: drawerWidth,
   },
   content: {
     marginTop: -30,
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
-    
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -56,13 +53,13 @@ const styles = theme => ({
   },
   menuItem: {
     color: theme.palette.common.white,
-    backgroundColor: blueGrey[colorBack], 
+    backgroundColor: blueGrey[colorBack],
     '& $icon': {
       color: theme.palette.common.white,
       backgroundColor: blueGrey[800],
     },
     '&:focus': {
-      color: blue[700],     
+      color: blue[700],
       backgroundColor: blueGrey[700],
       '& $primary, & $icon': {
         color: blue[600],
@@ -72,6 +69,6 @@ const styles = theme => ({
   },
   primary: {},
   icon: {},
-})
+});
 
 export default styles;

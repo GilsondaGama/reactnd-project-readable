@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import {
-  fetchCategories,
-  fetchCategoryPosts
-} from '../actions';
+import { fetchCategories, fetchCategoryPosts } from '../actions';
 
-import Categories from '../components/Categories'
+import Categories from '../components/Categories';
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories
-  }
+    categories: state.categories,
+  };
 }
 
-export default connect(mapStateToProps, {
-  fetchCategories,
-  fetchCategoryPosts
-})(Categories);
+export default connect(
+  mapStateToProps,
+  {
+    fetchCategories,
+    fetchCategoryPosts,
+  },
+)(Categories);

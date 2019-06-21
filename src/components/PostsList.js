@@ -12,14 +12,16 @@ import Typography from '@material-ui/core/Typography';
 
 import CustomizedSnackbars from './shared/CustomizedSnackbars';
 import ContainerPost from '../containers/ContainerPost';
-import styles from '../styles/StylePostList'
+import styles from '../styles/StylePostList';
 
 class PostsList extends Component {
   componentWillMount() {
     if (this.props.match.params.category) {
       const {
         fetchCategoryPosts,
-        match: { params: { category } } 
+        match: {
+          params: { category },
+        },
       } = this.props;
       fetchCategoryPosts(category.toLowerCase());
     } else {
@@ -32,59 +34,49 @@ class PostsList extends Component {
 
     if (posts.length > 0) {
       const orderedPosts = _.sortBy(posts, this.props.postsOrder).reverse();
-      return (
-        _.map(orderedPosts, post => 
-          <Grid key={post.id} item xs={12}>
-            <ContainerPost
-            key={post.id}
-            post={post}
-            onDeletePost={deletePost}
-          />
+      return _.map(orderedPosts, post => (
+        <Grid key={post.id} item xs={12}>
+          <ContainerPost key={post.id} post={post} onDeletePost={deletePost} />
         </Grid>
-        )
-      );
+      ));
     }
 
     return (
       <div className={classes.root}>
-        <CustomizedSnackbars
-          variant={'warning'}
-          message={'No posts found for the category!'}
-        />
+        <CustomizedSnackbars variant="warning" message="No posts found for the category!" />
       </div>
-    )
+    );
   }
 
-  render(){
+  render() {
     const { classes, postsOrder, postSortOrder } = this.props;
 
-    return(
+    return (
       <Fragment>
-        <div className={classes.root}>        
+        <div className={classes.root}>
           <AppBar position="static" className={classes.appBar}>
             <Toolbar variant="dense" className={classes.toolBar}>
               <Typography variant="subtitle1" color="primary">
                 You can comment on an existing or create a new post, Sort by:
-
-              <Select 
-                className={classes.select}
-                value={postsOrder}
-                onChange={event => {
-                  postSortOrder(event.target.value)
-                  this.setState({ seleted: event.target.value })
-                }}
+                <Select
+                  className={classes.select}
+                  value={postsOrder}
+                  onChange={(event) => {
+                    postSortOrder(event.target.value);
+                    this.setState({ seleted: event.target.value });
+                  }}
                 >
-                <MenuItem value="voteScore">VOTES</MenuItem>
-                <MenuItem value="timestamp">DATE</MenuItem>
-              </Select>
-                </Typography>
+                  <MenuItem value="voteScore">VOTES</MenuItem>
+                  <MenuItem value="timestamp">DATE</MenuItem>
+                </Select>
+              </Typography>
             </Toolbar>
           </AppBar>
 
           {this.renderPosts()}
         </div>
       </Fragment>
-    )
+    );
   }
 }
 

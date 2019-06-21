@@ -8,13 +8,13 @@ import ContainerCommentsList from '../containers/ContainerCommentsList';
 
 class PostDetail extends Component {
   state = {
-    commentCount: 0
-  }
+    commentCount: 0,
+  };
 
   componentWillMount() {
     const { id } = this.props.match.params;
     this.props.fetchPost(id, () => false);
-    this.updatePostCommentsCount()
+    this.updatePostCommentsCount();
   }
 
   updatePostCommentsCount = () => {
@@ -22,35 +22,40 @@ class PostDetail extends Component {
     this.props.fetchCommentsCount(id, (data) => {
       this.setState({ commentCount: data.amount });
     });
-  }
+  };
 
-  render(){
-    const { classes, post, deletePost, match: { params: { category } } } = this.props
+  render() {
+    const {
+      classes,
+      post,
+      deletePost,
+      match: {
+        params: { category },
+      },
+    } = this.props;
 
-    return(
-      (!post || post.category !== category)
-      ? <NotFound />
-      : <div className={classes.root}>
-          <Grid container spacing={24}>
-
+    return !post || post.category !== category ? (
+      <NotFound />
+    ) : (
+      <div className={classes.root}>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
             <Grid item xs={12}>
-              <Grid item xs={12}>
-                <PostContainer
-                  key={post.id}
-                  post={post}
-                  commentCount={this.state.commentCount}
-                  onDeletePost={deletePost}
-                />
-              </Grid>
+              <PostContainer
+                key={post.id}
+                post={post}
+                commentCount={this.state.commentCount}
+                onDeletePost={deletePost}
+              />
             </Grid>
+          </Grid>
 
-            <br />
-            <ContainerCommentsList
-              postCategory={post.category}
-              postId={post.id}
-              updatePostCommentsCount={this.updatePostCommentsCount}
-            />
-
+          <br />
+          <ContainerCommentsList
+            postCategory={post.category}
+            postId={post.id}
+            updatePostCommentsCount={this.updatePostCommentsCount}
+          />
         </Grid>
       </div>
     );
@@ -64,7 +69,7 @@ const styles = theme => ({
   },
   card: {
     maxWidth: '100%',
-    backgroundColor: '#eeeeee'
+    backgroundColor: '#eeeeee',
   },
 });
 

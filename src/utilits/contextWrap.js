@@ -10,10 +10,12 @@ const router = {
   history: new BrowserRouter().history,
   route: {
     location: {},
-    match: { params: {
-      id: ID_DEFAULT,
-      category: CATEGORY_DEFAULT
-    }},
+    match: {
+      params: {
+        id: ID_DEFAULT,
+        category: CATEGORY_DEFAULT,
+      },
+    },
   },
 };
 

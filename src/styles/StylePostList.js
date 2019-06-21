@@ -4,8 +4,8 @@ const styles = theme => ({
   root: {
     marginTop: 60,
   },
-  appBar: {  
-    backgroundColor: blue[300],  
+  appBar: {
+    backgroundColor: blue[300],
     borderRadius: 10,
   },
   chipBar: {
@@ -13,11 +13,11 @@ const styles = theme => ({
     marginRight: 7,
   },
   paper: {
-    textAlign: 'center',  
-    backgroundColor: blue[800],  
-  },  
+    textAlign: 'center',
+    backgroundColor: blue[800],
+  },
   select: {
-    color: blue[900],  
+    color: blue[900],
     marginLeft: 7,
   },
 });

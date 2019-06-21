@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import  {
+import {
   FETCH_COMMENTS_COUNT,
   FETCH_COMMENTS,
   COMMENT_WAS_DELETED,
@@ -8,7 +8,7 @@ import  {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  commentCount: {}
+  commentCount: {},
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -18,9 +18,9 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         commentCount: {
-          ...state['commentCount'],
-          [id]: amount
-        }
+          ...state.commentCount,
+          [id]: amount,
+        },
       };
     case FETCH_COMMENTS:
       return _.mapKeys(action.payload, 'id');
@@ -29,14 +29,14 @@ export default function (state = INITIAL_STATE, action) {
     case VOTE_FOR_COMMENT:
       return {
         ...state,
-        [action.payload.id]: action.payload
-      }
+        [action.payload.id]: action.payload,
+      };
     case COMMENT_WAS_CREATED:
       return {
         ...state,
-        [action.payload.id]: action.payload
-      }
+        [action.payload.id]: action.payload,
+      };
     default:
-    return state;
+      return state;
   }
 }

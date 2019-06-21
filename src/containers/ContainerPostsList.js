@@ -5,24 +5,26 @@ import {
   fetchCategoryPosts,
   postSortOrder,
   deletePost,
-  fetchCommentsCount
+  fetchCommentsCount,
 } from '../actions';
 
-import PostsList from '../components/PostsList'
+import PostsList from '../components/PostsList';
 
-function mapStateToProps (state) {
-    const postsFiltered = _.filter(state.posts, post => !post.deleted);
-    return {
-      posts: postsFiltered,
-      postsOrder: state.postsOrder
-    }
-  }
+function mapStateToProps(state) {
+  const postsFiltered = _.filter(state.posts, post => !post.deleted);
+  return {
+    posts: postsFiltered,
+    postsOrder: state.postsOrder,
+  };
+}
 
 export default connect(
-  mapStateToProps, {
+  mapStateToProps,
+  {
     fetchPosts,
     fetchCategoryPosts,
     postSortOrder,
     deletePost,
     fetchCommentsCount,
-  })(PostsList);
+  },
+)(PostsList);
