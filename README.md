@@ -58,8 +58,8 @@ The app will be served with live reloading on `http://localhost:3000`.
 ```bash
 $ cd reactnd-project-readable/
 $ npm start
-    
-    
+```    
+
 ## Contributing
 
 1. Fork it
