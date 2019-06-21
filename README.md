@@ -24,7 +24,8 @@ Lastly, as this was a Redux assignment, it was required that **all** state lives
 - React & Redux
 - Redux Thunk
 - Material UI
-- ESLint AirBnb
+` ESLint AirBnb
+- 
 
 
 
