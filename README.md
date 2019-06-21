@@ -1,7 +1,6 @@
 <p align="center"><a href="https://in.udacity.com/course/react-nanodegree--nd019" target="_blank"><img width="180" src="https://www.wykop.pl/cdn/c3397993/link_SIrKotPCldE7IGnWEjOBSIX1SDMEhE1w,w300h223.jpg" alt="My Reads"></a></p>
 
 <h1 align="center">Readable Project - Udacity Nanodegree</h1>
-**Programming assignment for the [Udacity React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019) program.**
 
 ---
 
@@ -38,8 +37,25 @@ To get started developing right away:
     - `npm install`
     - `node server`
 * In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
     - `npm start`
+    
+    
+## Contributing
+
+1. Fork it
+2. Create your feature branch with specs (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+
+## Contributors
+
+* Gilson da Gama ([gilsondagama](https://github.com/GilsondaGama))
+
+
+## License
+
+This project is licensed under the MIT License. Check the `LICENSE` file.
 
 
