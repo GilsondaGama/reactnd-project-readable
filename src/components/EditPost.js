@@ -14,19 +14,16 @@ import styles from '../styles/StyleNewPost';
 const GoToMain = props => <Link to="/" {...props} />;
 
 class EditPost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      model: {
-        id: '',
-        title: '',
-        body: '',
-        author: '',
-        category: '',
-      },
-      submitted: false,
-    };
-  }
+  state = {
+    model: {
+      id: '',
+      title: '',
+      body: '',
+      author: '',
+      category: '',
+    },
+    submitted: false,
+  };
 
   componentWillMount() {
     this.props.fetchPost(this.props.match.params.id, this.fillFields);

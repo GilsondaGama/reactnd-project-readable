@@ -15,40 +15,34 @@ import styles from '../styles/StyleNewPost';
 const GoToMain = props => <Link to="/" {...props} />;
 
 class NewPost extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formData: {
-        title: '',
-        body: '',
-        author: '',
-        category: '',
-      },
-      submitted: false,
-      open: true,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    formData: {
+      title: '',
+      body: '',
+      author: '',
+      category: '',
+    },
+    submitted: false,
+    open: true,
+  };
 
   componentWilMount() {
     this.props.fetchCategories();
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { formData } = this.state;
     formData[event.target.name] = event.target.value;
     this.setState({ formData });
-  }
+  };
 
-  handleSubmit() {
+  handleSubmit = () => {
     this.setState({ submitted: true }, () => {
       this.props.createPost(this.state.formData, () => {
         this.props.history.push('/');
       });
     });
-  }
+  };
 
   handleToggle = () => {
     this.setState({

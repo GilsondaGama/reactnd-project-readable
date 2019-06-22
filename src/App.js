@@ -11,6 +11,7 @@ import NewPost from './components/NewPost';
 import ResponsiveMenu from './components/ResponsiveMenu';
 
 import styles from './styles/StyleCategories';
+import NotFound from './components/shared/NotFound';
 
 class App extends Component {
   state = {
@@ -39,6 +40,7 @@ class App extends Component {
               />
               <Route path="/:category" exact component={props => <Main {...props} />} />
               <Route path="/:category/:id" exact component={props => <PostDetail {...props} />} />
+              <Route component={NotFound} />
             </Switch>
           </main>
         </div>

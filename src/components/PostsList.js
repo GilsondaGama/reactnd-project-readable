@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import CustomizedSnackbars from './shared/CustomizedSnackbars';
 import ContainerPost from '../containers/ContainerPost';
 import styles from '../styles/StylePostList';
+import NotFound from './shared/NotFound';
 
 class PostsList extends Component {
   componentWillMount() {
@@ -44,6 +45,7 @@ class PostsList extends Component {
     return (
       <div className={classes.root}>
         <CustomizedSnackbars variant="warning" message="No posts found for the category!" />
+        <NotFound />
       </div>
     );
   }

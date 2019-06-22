@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
@@ -11,29 +10,19 @@ import AddComment from '@material-ui/icons/AddComment';
 import { blue } from '@material-ui/core/colors';
 
 class NewComment extends Component {
-  state = { textfield: '' };
-
-  onKeyPress = (event) => {
-    if (event.key === 'Enter' && event.target.value !== '') {
-      const _AUTHOR = 'anonymous';
-      const comment = this.state.textfield;
-      this.setState({ textfield: '' }); // clear textfield
-      this.props.onCreateComment(comment, _AUTHOR);
-    }
-  };
+  state = { textfield: '', author: '' };
 
   onFormSubmit = () => {
-    if (this.state.textfield !== '') {
-      const _AUTHOR = 'anonymous';
-      const comment = this.state.textfield;
-      this.setState({ textfield: '' }); // clear textfield
-      this.props.onCreateComment(comment, _AUTHOR);
-    }
+    const comment = this.state.textfield;
+    const _AUTHOR = this.state.author;
+    this.setState({ textfield: '' }); // clear textfield
+    this.setState({ author: '' }); // clear author
+    this.props.onCreateComment(comment, _AUTHOR);
   };
 
   handleTextFieldChange = (event) => {
     this.setState({
-      textfield: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -41,37 +30,43 @@ class NewComment extends Component {
     const { classes } = this.props;
 
     return (
-      <Grid item xs={12}>
-        <Card className={classes.cardComment} style={{ padding: 10 }}>
-          <ValidatorForm ref="form" onSubmit={this.onFormSubmit}>
-            <TextValidator
-              id="comment-field"
-              name="comment-field"
-              label="Type your comment"
-              value={this.state.textfield}
-              onChange={this.handleTextFieldChange}
-              onKeyPress={this.onKeyPress}
-              validators={['required']}
-              errorMessages={['This comment field is required.']}
-              className={classes.inputbackground}
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                classes: {
-                  root: classes.inputLabelProps,
-                },
-              }}
-            />
-            <Button type="submit" variant="contained" color="primary" className={classes.button}>
-              Add
-              <Icon className={classes.rightIcon}>
-                <AddComment />
-              </Icon>
-            </Button>
-          </ValidatorForm>
-        </Card>
-      </Grid>
+      <Card className={classes.cardComment} style={{ padding: 10 }}>
+        <ValidatorForm ref="form" onSubmit={this.onFormSubmit}>
+          <TextValidator
+            className={classes.textValidator}
+            onChange={this.handleTextFieldChange}
+            label="comment"
+            name="textfield"
+            margin="dense"
+            variant="outlined"
+            value={this.state.textfield}
+            required
+            fullWidth
+            autoComplete="off"
+          />
+          <br />
+
+          <TextValidator
+            className={classes.textValidator}
+            onChange={this.handleTextFieldChange}
+            label="Author"
+            name="author"
+            margin="dense"
+            variant="outlined"
+            value={this.state.author}
+            required
+            autoComplete="off"
+          />
+          <br />
+
+          <Button type="submit" variant="contained" color="primary" className={classes.button}>
+            Add
+            <Icon className={classes.rightIcon}>
+              <AddComment />
+            </Icon>
+          </Button>
+        </ValidatorForm>
+      </Card>
     );
   }
 }
